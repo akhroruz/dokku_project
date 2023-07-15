@@ -1,0 +1,25 @@
+name: Dev deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Dokku deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Deploy to dokku
+        uses: dokku/github-action@master
+        with:
+          branch: 'develop'
+          git_push_flags: '--force'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          git_remote_url: 'ssh://dokku@134.122.86.227/road24'
