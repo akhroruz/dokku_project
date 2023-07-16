@@ -2,6 +2,9 @@ import os
 from pathlib import Path
 
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,7 +55,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'root.wsgi.application'
 
 DATABASES = {'default': dj_database_url.parse(os.getenv('DATABASE_URL'))}
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
