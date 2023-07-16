@@ -10,8 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ad)v0#r8e7mg2p90*m5$gsurv!%v(p3cv)%(xd-vs1im@l=q8i'
 
-DEBUG = True
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -23,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.apps.AppsConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -84,3 +84,10 @@ STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR / 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': os.getenv('REDIS_URL'),
+    }
+}
